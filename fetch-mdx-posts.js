@@ -6,6 +6,7 @@ const frontmatter = require("gray-matter");
 const mdx = require("@mdx-js/mdx");
 const rehypeSlug = require("rehype-slug");
 const cloudinary = require("rehype-local-image-to-cloudinary");
+const rehypePrism = require("./rehype-prism-plugin");
 
 exports.sourceData = async ({ createPage, ...options }) => {
   console.log("sourceData");
@@ -21,9 +22,12 @@ exports.sourceData = async ({ createPage, ...options }) => {
 
       const { data, content } = frontmatter(file);
 
+      console.log({ data });
+
       try {
         compiledMDX = await mdx(content, {
           rehypePlugins: [
+            rehypePrism,
             rehypeSlug,
             [
               cloudinary,
@@ -34,6 +38,7 @@ exports.sourceData = async ({ createPage, ...options }) => {
             ],
           ],
         });
+        console.log({ compiledMDX });
       } catch (e) {
         console.log(e);
         throw e;
