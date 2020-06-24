@@ -1,10 +1,11 @@
 // Code credit to Chris Biscardi
 
 const fs = require("fs").promises;
+const path = require("path");
 const frontmatter = require("gray-matter");
 const mdx = require("@mdx-js/mdx");
-
 const rehypeSlug = require("rehype-slug");
+const cloudinary = require("rehype-local-image-to-cloudinary");
 
 exports.sourceData = async ({ createPage, ...options }) => {
   console.log("sourceData");
@@ -22,7 +23,16 @@ exports.sourceData = async ({ createPage, ...options }) => {
 
       try {
         compiledMDX = await mdx(content, {
-          rehypePlugins: [rehypeSlug],
+          rehypePlugins: [
+            rehypeSlug,
+            [
+              cloudinary,
+              {
+                baseDir: path.join(__dirname, "content", "posts", filename),
+                uploadFolder: "toast-test",
+              },
+            ],
+          ],
         });
       } catch (e) {
         console.log(e);
