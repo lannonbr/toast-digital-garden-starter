@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ["./src/**/*.js"],
+  purge: ["./src/**/*.js", "./rehype-prism-plugin.js"],
   theme: {
     extend: {},
   },

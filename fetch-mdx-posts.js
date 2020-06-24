@@ -22,8 +22,6 @@ exports.sourceData = async ({ createPage, ...options }) => {
 
       const { data, content } = frontmatter(file);
 
-      console.log({ data });
-
       try {
         compiledMDX = await mdx(content, {
           rehypePlugins: [
@@ -38,7 +36,6 @@ exports.sourceData = async ({ createPage, ...options }) => {
             ],
           ],
         });
-        console.log({ compiledMDX });
       } catch (e) {
         console.log(e);
         throw e;

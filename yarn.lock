@@ -4310,10 +4310,9 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-rehype-local-image-to-cloudinary@^1.0.1:
+"rehype-local-image-to-cloudinary@https://github.com/lannonbr/rehype-local-image-to-cloudinary#fix/cleanup-async":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/rehype-local-image-to-cloudinary/-/rehype-local-image-to-cloudinary-1.0.1.tgz#9dc72013db7a77c8d2178c921a158946c867e172"
-  integrity sha512-KQNiOYEukRNQA0XxkdfZfODRykeE+AwrAfVguR103zx51We2phc6MPOMb6LXs8WNtPS9CPF7hQI7288BfR9GPg==
+  resolved "https://github.com/lannonbr/rehype-local-image-to-cloudinary#51bc6b6328b3974100c0d48d2473964f7efa1c39"
   dependencies:
     cloudinary "^1.18.1"
     dotenv "^8.2.0"

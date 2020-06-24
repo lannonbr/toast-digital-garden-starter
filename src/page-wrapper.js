@@ -30,6 +30,28 @@ export default ({ children, ...props }) => {
       <MDXProvider
         components={{
           h1: (props) => <h1 className="text-4xl" {...props} />,
+          inlineCode: ({ children }) => (
+            <code
+              style={{
+                backgroundColor: "rgb(1,22,39)",
+                padding: 3,
+                margin: 3,
+                borderRadius: 5,
+                color: "#f0f0f0",
+              }}
+            >
+              {children}
+            </code>
+          ),
+          pre: (props) => {
+            return (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: props.children.props.children,
+                }}
+              />
+            );
+          },
         }}
       >
         <div className="max-w-6xl mx-auto px-2">{children}</div>

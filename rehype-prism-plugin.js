@@ -29,8 +29,6 @@ module.exports = (options) => (ast) => {
         })
       );
 
-      console.log({ result });
-
       node.children = [
         {
           value: result,
@@ -88,7 +86,7 @@ const Code = ({
       return h(
         "div",
         {
-          className: "codeBlock gatsby-highlight mb-4 shadow-xl text-sm",
+          className: "codeBlock toast-highlight mb-4 shadow-xl text-sm",
         },
         [
           title &&
