@@ -12,7 +12,15 @@ A Digital Garden template built using [Toast](https://github.com/ChristopherBisc
 
 I'm using [rehype-local-image-to-cloudinary](https://github.com/jlengstorf/rehype-local-image-to-cloudinary) to take local images and upload them to Cloudinary.
 
-Read through that readme to learn how to set it up. If you want to modify the usage of it, it is in the `rehypePlugins` array in the `mdx()` call in `fetch-mdx-posts.js`.
+You'll need to create a `.env` with your Cloudinary API details:
+
+```
+CLOUDINARY_CLOUD_NAME=<cloudinary_cloud_name>
+CLOUDINARY_API_KEY=<cloudinary_api_key>
+CLOUDINARY_API_SECRET=<cloudinary_api_secret>
+```
+
+Read through that readme to learn how to set it up in more detail. If you want to modify the usage of it, it is in the `rehypePlugins` array in the `mdx()` call in `fetch-mdx-posts.js`.
 
 ## Syntax Highlighting w/ PrismJS
 
