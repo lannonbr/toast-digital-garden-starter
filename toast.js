@@ -1,24 +1,11 @@
 // Code credit to Chris Biscardi
 
-const { promises: fs } = require("fs");
-const path = require("path");
-const MDXPostsSource = require("./fetch-mdx-posts");
+import * as MDXPostsSource from "./fetch-mdx-posts.js";
 
-exports.sourceData = async ({ withCache, createPage }) => {
-  return Promise.all([
-    withCache("mdx-posts", MDXPostsSource.sourceData({ createPage })),
-  ]);
-};
-
-exports.prepData = async ({ cacheDir, publicDir }) => {
-  // have to make sure the directory we want to write in exists
-  // We can probably avoid this by offering some kind of "non-filesystem"-based
-  // API for adding data to paths
-  await fs.mkdir(path.resolve(publicDir, "src/pages"), { recursive: true });
+export const sourceData = async ({ setData, createPage }) => {
+  const mdxPostsData = await MDXPostsSource.sourceData({ createPage });
 
   // prep page data for index and post pages
-  const mdxPostsData = require(path.resolve(cacheDir, "mdx-posts.json"));
-
   const allPostsData = mdxPostsData.map(
     ({ title, date, slug, description }) => ({
       title,
@@ -28,10 +15,8 @@ exports.prepData = async ({ cacheDir, publicDir }) => {
       contentType: "post",
     })
   );
-  await fs.writeFile(
-    path.resolve(publicDir, "src/pages/garden.json"),
-    JSON.stringify({ posts: allPostsData })
-  );
+
+  await setData({ slug: "/garden", data: { posts: allPostsData } });
 
   // index.html
   const topPostsData = allPostsData
@@ -45,8 +30,5 @@ exports.prepData = async ({ cacheDir, publicDir }) => {
     .filter(({ contentType }) => contentType === "post")
     .slice(0, 5);
 
-  await fs.writeFile(
-    path.resolve(publicDir, "src/pages/index.json"),
-    JSON.stringify({ posts: topPostsData })
-  );
+  await setData({ slug: "/", data: { posts: topPostsData } });
 };

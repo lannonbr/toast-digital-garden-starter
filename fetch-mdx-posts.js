@@ -1,14 +1,14 @@
 // Code credit to Chris Biscardi
 
-const fs = require("fs").promises;
-const path = require("path");
-const frontmatter = require("gray-matter");
-const mdx = require("@mdx-js/mdx");
-const rehypeSlug = require("rehype-slug");
-const cloudinary = require("rehype-local-image-to-cloudinary");
-const rehypePrism = require("./rehype-prism-plugin");
+import { promises as fs } from "fs";
+import path from "path";
+import frontmatter from "gray-matter";
+import mdx from "@mdx-js/mdx";
+import rehypeSlug from "rehype-slug";
+import cloudinary from "rehype-local-image-to-cloudinary";
+import rehypePrism from "./rehype-prism-plugin.cjs";
 
-exports.sourceData = async ({ createPage, ...options }) => {
+export const sourceData = async ({ createPage, ...options }) => {
   console.log("sourceData");
   const files = await fs.readdir("./content/posts/");
 
@@ -30,7 +30,7 @@ exports.sourceData = async ({ createPage, ...options }) => {
             [
               cloudinary,
               {
-                baseDir: path.join(__dirname, "content", "posts", filename),
+                baseDir: path.join(".", "content", "posts", filename),
                 uploadFolder: "toast-test",
               },
             ],

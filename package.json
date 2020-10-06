@@ -2,43 +2,49 @@
   "name": "toast-digital-garden-starter",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
-    "@babel/register": "^7.10.5",
+    "@babel/register": "^7.11.5",
     "@sector/breadbox": "^0.0.4"
   },
   "scripts": {
-    "build": "yarn build:css && toast incremental",
-    "build:css": "NODE_ENV=production tailwindcss build src/style/main.css --output public/style.css",
+    "build": "yarn build:css && toast incremental .",
+    "build:css": "NODE_ENV=production tailwindcss build src/style/main.css --config tailwind.config.cjs --output public/style.css",
     "prepare": "breadbox --dest public/web_modules",
     "breadbox": "breadbox --dest public/web_modules"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.6.14",
-    "@mdx-js/preact": "^1.6.14",
+    "@mdx-js/mdx": "^2.0.0-next.8",
+    "@mdx-js/preact": "^2.0.0-next.8",
     "@sector/babel-plugin-package-import": "^0.3.1",
     "@sindresorhus/slugify": "^1.1.0",
-    "cloudinary": "^1.22.0",
+    "cloudinary": "^1.23.0",
     "dotenv": "^8.2.0",
     "globby": "^11.0.1",
     "gray-matter": "^4.0.2",
     "parse-numeric-range": "^1.2.0",
-    "preact": "^10.4.6",
+    "preact": "^10.5.4",
     "preact-render-to-string": "^5.1.10",
     "prism-react-renderer": "^1.1.1",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.21.0",
     "react-helmet": "^6.1.0",
-    "rehype-local-image-to-cloudinary": "^1.0.2",
+    "rehype-local-image-to-cloudinary": "^1.0.3",
     "rehype-slug": "^3.0.0",
-    "tailwindcss": "^1.5.2",
-    "toast": "^0.2.8",
+    "tailwindcss": "^1.8.10",
+    "toast": "^0.3.4",
     "unist-util-visit": "^2.0.3"
   },
   "snowpack": {
+    "exclude": [
+      "public/**",
+      "toast.js",
+      "fetch-*.js"
+    ],
     "installOptions": {
       "alias": {
         "react": "preact/compat"

@@ -86,14 +86,14 @@ const Code = ({
       return h(
         "div",
         {
-          className: "codeBlock toast-highlight mb-4 shadow-xl text-sm",
+          class: "codeBlock toast-highlight mb-4 shadow-xl text-sm",
         },
         [
           title &&
             h(
               "div",
               {
-                className: className + " text-sm px-5 py-4",
+                class: className + " text-sm px-5 py-4",
                 style: style,
               },
               title
@@ -101,7 +101,7 @@ const Code = ({
           h(
             "pre",
             {
-              className: className + " p-5 mt-0 overflow-auto",
+              class: className + " p-5 mt-0 overflow-auto",
               style: {
                 ...style,
                 borderTop: title ? "1px solid #8BADC1" : "unset",
